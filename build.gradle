@@ -19,7 +19,7 @@ jar {
 	}
 }
 
-tasks.withType(Copy).all { duplicatesStrategy 'exclude' }
+
 
 group = 'com.chemapps'
 version = '0.0.1-SNAPSHOT'
@@ -55,6 +55,12 @@ task copyAllDependencies(type: Copy) {
 	into "${buildDir}/output/libs"
 }
 build.dependsOn(copyAllDependencies)
+
+tasks.withType(Copy).all { duplicatesStrategy 'exclude' }
+
+tasks.withType(Jar).all { duplicatesStrategy 'exclude' }
+
+
 
 tasks.named('test') {
 	useJUnitPlatform()
