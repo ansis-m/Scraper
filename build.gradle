@@ -18,6 +18,8 @@ jar {
 	}
 }
 
+tasks.withType(Copy).all { duplicatesStrategy 'exclude' }
+
 group = 'com.chemapps'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
