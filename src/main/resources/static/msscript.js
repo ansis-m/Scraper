@@ -7,31 +7,20 @@ ChemicalizeMarvinJs.createEditor("#marvin-test").then(function (marvin) {
         marvin.exportStructure("inchi").then(function (inchi) {
             document.getElementById("marvin-logg").innerHTML = "InChi: " + inchi;});
 
-
     }
 
-
-
     function send() {
-
-
-        var n;
-        var s;
-        var i;
 
         marvin.exportStructure("name").then(function (name) { n =  name; });
         marvin.exportStructure("inchi").then(function (inchi) { i =  inchi; });
         marvin.exportStructure("smiles").then(function (smiles) { s =  smiles; });
 
-
         marvin.exportStructure("inchi").then(function (inchi) {
 
-                let object = {
-                "name": n,
-                "inchi": inchi,
-                "smiles": s
-
-            };
+            let object = {
+            "name": n,
+            "inchi": i,
+            "smiles": s };
 
             let json = JSON.stringify(object);
 
