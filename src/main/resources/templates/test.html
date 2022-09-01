@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title> Test Page </title>
+    <script src="https://marvinjs.chemicalize.com/v1/46a942384caa420590869342460c4b33/client-settings.js"></script>
+    <script src="https://marvinjs.chemicalize.com/v1/client.js"></script>
+    <script type="text/javascript"> function send() {
+
+    console.log('#someButton was clicked');
+    let object = {
+        "code": "jkzgfhsj",
+        "time": "1",
+        "views": "3"
+
+    };
+
+    let json = JSON.stringify(object);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", '/inchi', false);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.send(json);
+
+    if (xhr.status == 200) {
+      alert("Success!");
+    }
+}
+</script>
+</head>
+<body>
+    <h1>Index</h1>
+    <a href="/">index</a> <br>
+    <div id="marvin-test" style="width: 600px; height: 480px"></div>
+    <button id="action-button" type="button">Click Me!</button>
+    <button id="send_snippet" type="submit" onclick="send()">Submit</button>
+    <div id="marvin-log"></div>
+    <div id="marvin-logg"></div>
+    <script>
+        ChemicalizeMarvinJs.createEditor("#marvin-test").then(function (marvin) {
+            function handleMolChange() {
+                marvin.exportStructure("name").then(function (name) {
+                    document.getElementById("marvin-log").innerHTML = "Name: " + name;});
+
+                marvin.exportStructure("inchi").then(function (inchi) {
+                    document.getElementById("marvin-logg").innerHTML = "InChi: " + inchi;});
+
+
+            }
+
+            function send() {
+                marvin.exportStructure("inchi").then(function (inchi) {
+
+                        let object = {
+                        "code": inchi,
+                        "time": "1",
+                        "views": "3"
+
+                    };
+
+                    let json = JSON.stringify(object);
+
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("POST", '/inchi', false);
+                    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                    xhr.send(json);
+
+                    if (xhr.status == 200) {
+                      alert("Success!");
+                    }
+
+
+
+
+                });
+
+            }
+
+
+
+            document.getElementById("action-button").addEventListener("click", send);
+            marvin.on("molchange", handleMolChange);
+        });
+    </script>
+</body>
+</html>
