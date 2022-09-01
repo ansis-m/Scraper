@@ -13,12 +13,10 @@ jar {
 				'Main-Class': 'com.chemapps.ChemScraper.ChemScraperApplication'
 		)
 	}
+
 	from {
-		configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
+		configurations.compileClasspath.filter { it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
 	}
-//	from {
-//		configurations.compileClasspath.filter { it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
-//	}
 }
 
 tasks.withType(Copy).all { duplicatesStrategy 'exclude' }
