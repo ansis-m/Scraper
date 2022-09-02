@@ -43,7 +43,7 @@ public class HtmlController {
     }
 
     @PostMapping("/inchi")
-    public String InChi(@RequestBody MarvinOutput marvinOutput, HttpServletResponse response) {
+    public void InChi(@RequestBody MarvinOutput marvinOutput, HttpServletResponse response) {
         System.out.println("******************");
         System.out.println(marvinOutput.getName());
         System.out.println(marvinOutput.getInchi());
@@ -51,7 +51,6 @@ public class HtmlController {
         System.out.println("******************");
         marvinOutput.cleanUpInput();
         marvinService.save(marvinOutput);
-        return "redirect:/records.html";
     }
 
     @GetMapping("/records")
@@ -63,6 +62,7 @@ public class HtmlController {
 
     @GetMapping("/wait")
     public String Foo(Model model) {
+        //perhaps neet to sleep a bit to save the entry
         System.out.println("OOOOOOOOOOOOOOOOOOOO");
         List<MarvinOutput> records = marvinService.getAll();
         model.addAttribute("records", records);

@@ -32,9 +32,10 @@ ChemicalizeMarvinJs.createEditor("#marvin-test").then(function (marvin) {
             xhr.send(json);
 
 
-            window.location.replace("/search");
-
+            window.location.replace("/wait");
         });
+
+
     }
 
     document.getElementById("action-button").addEventListener("click", send);
