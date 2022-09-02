@@ -31,9 +31,8 @@ ChemicalizeMarvinJs.createEditor("#marvin-test").then(function (marvin) {
             xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
             xhr.send(json);
 
-            if (xhr.status == 200) {
-              alert("Success!");
-            }
+
+            window.location.replace("/search");
 
         });
     }

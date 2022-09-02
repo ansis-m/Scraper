@@ -1,43 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
-    <title> Create </title>
-<!--    <script type="text/javascript" th:src="@{./mscript.js}"></script>-->
-    <script type="text/javascript"> function send() {
-
-    console.log('#someButton was clicked');
-    let object = {
-        "code": document.getElementById("code_snippet").value,
-        "time": document.getElementById("time_restriction").value,
-        "views": document.getElementById("views_restriction").value
-
-    };
-
-    let json = JSON.stringify(object);
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", '/inchi', false);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhr.send(json);
-
-    if (xhr.status == 200) {
-      alert("Success!");
-    }
-}
+    <title> Test Page </title>
+    <script src="https://marvinjs.chemicalize.com/v1/46a942384caa420590869342460c4b33/client-settings.js"></script>
+    <script src="https://marvinjs.chemicalize.com/v1/client.js"></script>
+    <script type="text/javascript">
 </script>
-
 </head>
 <body>
-
-<form>
-    <br>
-    <textarea rows="4" cols="50" id="code_snippet" name="comment">Enter your Code...</textarea>
-    <br>
-    <a>time restriction in seconds</a><input id="time_restriction" type="text"/>
-    <br>
-    <a>views restriction</a><input id="views_restriction" type="text"/>
-    <br>
+    <h1>Index</h1>
+    <a href="/">index</a> <br>
+    <div id="marvin-test" style="width: 600px; height: 480px"></div>
+    <button id="action-button" type="button">Click Me!</button>
     <button id="send_snippet" type="submit" onclick="send()">Submit</button>
-</form>
+    <div id="marvin-log"></div>
+    <div id="marvin-logg"></div>
+    <script src="msscript.js">
+    </script>
 </body>
 </html>
