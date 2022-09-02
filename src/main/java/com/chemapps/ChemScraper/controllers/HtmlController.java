@@ -17,6 +17,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.List;
 
 @Controller
@@ -26,8 +31,7 @@ public class HtmlController {
     @Autowired
     private MarvinService marvinService;
 
-    @Autowired
-    InternalResourceViewResolver internalResourceViewResolver;
+    private String api = "https://cactus.nci.nih.gov/chemical/structure/";
 
 
     @GetMapping("/search")
@@ -61,11 +65,29 @@ public class HtmlController {
     }
 
     @GetMapping("/wait")
-    public String Foo(Model model) {
+    public String Foo(Model model) throws IOException, InterruptedException {
         //perhaps neet to sleep a bit to save the entry
-        System.out.println("OOOOOOOOOOOOOOOOOOOO");
-        List<MarvinOutput> records = marvinService.getAll();
-        model.addAttribute("records", records);
+
+        MarvinOutput record = marvinService.getLast();
+        model.addAttribute("records", record); //???? proly dont need
+
+
+        HttpClient client = HttpClient.newBuilder().build();
+        String inchi = record.getInchi();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                //.headers()
+                .uri(URI.create(api + inchi + "/cas"))
+                .GET()
+                .build();
+        HttpResponse response =  client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println("STATUS CODE: " + response.statusCode());
+
+        for(String s : response.body().toString().split("\n"))
+            System.out.println("entry: " + s);
+
+
+
         return "records";
     }
 

@@ -54,4 +54,9 @@ public class MarvinServiceImp implements MarvinService{
     public void save(MarvinOutput marvinOutput){
         marvinRepo.save(marvinOutput);
     }
+
+    @Override
+    public MarvinOutput getLast() {
+        return marvinRepo.findFirstByOrderByIdDesc();
+    }
 }

@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface MarvinService {
-    @Transactional
+
     List<MarvinOutput> getAll();
 
     @Transactional
@@ -25,4 +25,6 @@ public interface MarvinService {
 
     @Transactional
     void save(MarvinOutput marvinOutput);
+
+    MarvinOutput getLast();
 }

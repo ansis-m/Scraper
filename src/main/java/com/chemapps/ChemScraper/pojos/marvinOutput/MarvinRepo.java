@@ -9,5 +9,5 @@ public interface MarvinRepo extends JpaRepository<MarvinOutput, Long> {
     public List<MarvinOutput> findByName(String name);
     public List<MarvinOutput> findByInchi(String name);
     public List<MarvinOutput> findBySmiles(String name);
-
+    MarvinOutput findFirstByOrderByIdDesc();
 }
