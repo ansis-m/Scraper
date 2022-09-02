@@ -17,10 +17,12 @@ ChemicalizeMarvinJs.createEditor("#marvin-test").then(function (marvin) {
 
         marvin.exportStructure("inchi").then(function (inchi) {
 
-            let object = {
-            "name": n,
-            "inchi": i,
-            "smiles": s };
+                let object = {
+                "name": n,
+                "inchi": i,
+                "smiles": s
+
+            };
 
             let json = JSON.stringify(object);
 

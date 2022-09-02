@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title> Records </title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th> Id </th>
+        <th> Name </th>
+        <th> Inchi </th>
+        <th> Smiles </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="record : ${records}">
+        <td><span th:text="${record.getId()}"> Id </span></td>
+        <td><span th:text="${record.getName()}"> Name </span></td>
+        <td><span th:text="${record.getInchi()}"> Inchi </span></td>
+        <td><span th:text="${record.getSmiles()}"> Smiles </span></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
