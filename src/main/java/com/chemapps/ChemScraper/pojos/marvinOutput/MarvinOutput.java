@@ -20,14 +20,17 @@ public class MarvinOutput {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column
+    @Column(length = 1000)
     private String name;
 
-    @Column
+    @Column(length = 1000)
     private String inchi;
 
-    @Column
+    @Column(length = 1000)
     private String smiles;
+
+    @Column
+    private String cas;
 
     @Column
     private String timestamp;
